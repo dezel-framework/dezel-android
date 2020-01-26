@@ -1,3 +1,3 @@
 # Dezel
 
-A description of this package.
+Android native bridge.
