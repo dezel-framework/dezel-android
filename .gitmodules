@@ -1,0 +1,6 @@
+[submodule "dezel/src/main/jni/vendors/dezel-core-js"]
+	path = dezel/src/main/jni/vendors/dezel-core-js
+	url = https://github.com/dezel-framework/dezel-core-js.git
+[submodule "dezel/src/main/jni/vendors/dezel-core-ui"]
+	path = dezel/src/main/jni/vendors/dezel-core-ui
+	url = https://github.com/dezel-framework/dezel-core-ui.git
