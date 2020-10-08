@@ -205,37 +205,37 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 
 	/**
 	 * The wrapper's top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	open var borderTopLeftRadius: Float by Delegates.OnSet(0f) {
+	open var cornerTopLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateShape()
 	}
 
 	/**
 	 * The wrapper's top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	open var borderTopRightRadius: Float by Delegates.OnSet(0f) {
+	open var cornerTopRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateShape()
 	}
 
 	/**
 	 * The wrapper's bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	open var borderBottomLeftRadius: Float by Delegates.OnSet(0f) {
+	open var cornerBottomLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateShape()
 	}
 
 	/**
 	 * The wrapper's bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	open var borderBottomRightRadius: Float by Delegates.OnSet(0f) {
+	open var cornerBottomRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateShape()
 	}
 
@@ -332,7 +332,7 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 	 * @hidden
 	 */
 	private val hasShape: Boolean
-		get() = this.borderTopLeftRadius > 0f || this.borderTopRightRadius > 0f || this.borderBottomLeftRadius > 0f || this.borderBottomRightRadius > 0f
+		get() = this.cornerTopLeftRadius > 0f || this.cornerTopRightRadius > 0f || this.cornerBottomLeftRadius > 0f || this.cornerBottomRightRadius > 0f
 
 	/**
 	 * @property backgroundColorDrawable
@@ -627,10 +627,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 
 		val maxRadius = min(shapeW, shapeH) / 2f
 
-		var outerTL = this.borderTopLeftRadius
-		var outerTR = this.borderTopRightRadius
-		var outerBL = this.borderBottomLeftRadius
-		var outerBR = this.borderBottomRightRadius
+		var outerTL = this.cornerTopLeftRadius
+		var outerTR = this.cornerTopRightRadius
+		var outerBL = this.cornerBottomLeftRadius
+		var outerBR = this.cornerBottomRightRadius
 
 		if (outerTL > maxRadius) outerTL = maxRadius
 		if (outerTR > maxRadius) outerTR = maxRadius
@@ -735,20 +735,20 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 			}
 		}
 
-		this.shadowDrawable.borderTopLeftRadius = outerTL
-		this.shadowDrawable.borderTopRightRadius = outerTR
-		this.shadowDrawable.borderBottomLeftRadius = outerBL
-		this.shadowDrawable.borderBottomRightRadius = outerBR
+		this.shadowDrawable.cornerTopLeftRadius = outerTL
+		this.shadowDrawable.cornerTopRightRadius = outerTR
+		this.shadowDrawable.cornerBottomLeftRadius = outerBL
+		this.shadowDrawable.cornerBottomRightRadius = outerBR
 
-		this.borderDrawable.borderTopLeftRadius = outerTL
-		this.borderDrawable.borderTopRightRadius = outerTR
-		this.borderDrawable.borderBottomLeftRadius = outerBL
-		this.borderDrawable.borderBottomRightRadius = outerBR
+		this.borderDrawable.cornerTopLeftRadius = outerTL
+		this.borderDrawable.cornerTopRightRadius = outerTR
+		this.borderDrawable.cornerBottomLeftRadius = outerBL
+		this.borderDrawable.cornerBottomRightRadius = outerBR
 
-		this.borderDrawable.borderTopLeftInnerRadius = PointF(innerTLX, innerTLY)
-		this.borderDrawable.borderTopRightInnerRadius = PointF(innerTRX, innerTRY)
-		this.borderDrawable.borderBottomLeftInnerRadius = PointF(innerBLX, innerBLY)
-		this.borderDrawable.borderBottomRightInnerRadius = PointF(innerBRX, innerBRY)
+		this.borderDrawable.cornerTopLeftInnerRadius = PointF(innerTLX, innerTLY)
+		this.borderDrawable.cornerTopRightInnerRadius = PointF(innerTRX, innerTRY)
+		this.borderDrawable.cornerBottomLeftInnerRadius = PointF(innerBLX, innerBLY)
+		this.borderDrawable.cornerBottomRightInnerRadius = PointF(innerBRX, innerBRY)
 	}
 
 	/**
@@ -830,10 +830,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 
 			if (this.content is Clippable) {
 
-				val innerTL = this.borderDrawable.borderTopLeftInnerRadius
-				val innerTR = this.borderDrawable.borderTopRightInnerRadius
-				val innerBL = this.borderDrawable.borderBottomLeftInnerRadius
-				val innerBR = this.borderDrawable.borderBottomRightInnerRadius
+				val innerTL = this.borderDrawable.cornerTopLeftInnerRadius
+				val innerTR = this.borderDrawable.cornerTopRightInnerRadius
+				val innerBL = this.borderDrawable.cornerBottomLeftInnerRadius
+				val innerBR = this.borderDrawable.cornerBottomRightInnerRadius
 
 				if (innerTL.equals(0f, 0f) == false ||
 					innerTR.equals(0f, 0f) == false ||
@@ -917,10 +917,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 			this.hardwareLayerShapePath.addOuterRoundedRect(
 				adjustedW.toFloat(),
 				adjustedH.toFloat(),
-				this.borderTopLeftRadius,
-				this.borderTopRightRadius,
-				this.borderBottomLeftRadius,
-				this.borderBottomRightRadius
+				this.cornerTopLeftRadius,
+				this.cornerTopRightRadius,
+				this.cornerBottomLeftRadius,
+				this.cornerBottomRightRadius
 			)
 
 			canvas.save()
@@ -963,10 +963,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 				val innerW = adjustedW - this.borderLeftWidth - this.borderRightWidth
 				val innerH = adjustedH - this.borderTopWidth - this.borderBottomWidth
 
-				val innerTL = this.borderDrawable.borderTopLeftInnerRadius
-				val innerTR = this.borderDrawable.borderTopRightInnerRadius
-				val innerBL = this.borderDrawable.borderBottomLeftInnerRadius
-				val innerBR = this.borderDrawable.borderBottomRightInnerRadius
+				val innerTL = this.borderDrawable.cornerTopLeftInnerRadius
+				val innerTR = this.borderDrawable.cornerTopRightInnerRadius
+				val innerBL = this.borderDrawable.cornerBottomLeftInnerRadius
+				val innerBR = this.borderDrawable.cornerBottomRightInnerRadius
 
 				this.innerShapePath.reset()
 				this.innerShapePath.addInnerRoundedRect(
@@ -1043,10 +1043,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 		"borderLeftColor",
 		"borderRightColor",
 		"borderBottomColor",
-		"borderTopLeftRadius",
-		"borderTopRightRadius",
-		"borderBottomLeftRadius",
-		"borderBottomRightRadius",
+		"cornerTopLeftRadius",
+		"cornerTopRightRadius",
+		"cornerBottomLeftRadius",
+		"cornerBottomRightRadius",
 		"shadowBlur",
 		"shadowColor",
 		"shadowOffsetTop",
@@ -1075,10 +1075,10 @@ open class WrapperView(context: Context, content: View) : ViewGroup(context), An
 			"borderLeftWidth",
 			"borderRightWidth",
 			"borderBottomWidth",
-			"borderTopLeftRadius",
-			"borderTopRightRadius",
-			"borderBottomLeftRadius",
-			"borderBottomRightRadius",
+			"cornerTopLeftRadius",
+			"cornerTopRightRadius",
+			"cornerBottomLeftRadius",
+			"cornerBottomRightRadius",
 			"shadowBlur",
 			"shadowOffsetTop",
 			"shadowOffsetLeft",

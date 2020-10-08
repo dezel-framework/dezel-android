@@ -46,8 +46,14 @@ public class ValueList(handle: Long) {
 	 * @method get
 	 * @since 0.1.0
 	 */
-	public fun get(index: Int): Value {
-		return Value(ValueListExternal.getValue(this.handle, index))
+	public fun get(index: Int): Value? {
+
+		val value = ValueListExternal.getValue(this.handle, index)
+		if (value == 0L) {
+			return null
+		}
+
+		return Value(value)
 	}
 
 	/**

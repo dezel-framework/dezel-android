@@ -1,5 +1,6 @@
 package ca.logaritm.dezel.core
 
+import ca.logaritm.dezel.extension.core.initialize
 import ca.logaritm.dezel.extension.core.reset
 import ca.logaritm.dezel.extension.isLocked
 import ca.logaritm.dezel.view.display.value.Value
@@ -233,6 +234,34 @@ public class JavaScriptProperty {
 		this.initialValue = JavaScriptPropertyStringValue(string)
 		this.currentValue = JavaScriptPropertyStringValue(string)
 		this.handler = handler
+	}
+
+	/**
+	 * Initializes the property.
+	 * @constructor
+	 * @since 0.1.0
+	 */
+	public constructor(string: String, parse: Boolean, handler: JavaScriptPropertyHandler? = null) {
+
+		this.handler = handler
+
+		if (parse == false) {
+			this.initialValue = JavaScriptPropertyStringValue(string)
+			this.currentValue = JavaScriptPropertyStringValue(string)
+			return
+		}
+
+		this.initialValue = Null
+		this.currentValue = Null
+
+		val values = Value.parse(string)
+		if (values == null) {
+			return
+		}
+
+		this.initialize(values)
+
+		values.delete()
 	}
 
 	/**
@@ -590,6 +619,24 @@ public class JavaScriptProperty {
 	 */
 	public fun toHandle(context: JavaScriptContext): Long? {
 		return this.currentValue.toHandle(context)
+	}
+
+	/**
+	 * @method resetInitialValue
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	internal fun resetInitialValue(value: JavaScriptPropertyValue) {
+		this.initialValue = value
+	}
+
+	/**
+	 * @method resetCurrentValue
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	internal fun resetCurrentValue(value: JavaScriptPropertyValue) {
+		this.initialValue = value
 	}
 
 	//--------------------------------------------------------------------------

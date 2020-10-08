@@ -673,10 +673,10 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 		this.wrapper.borderLeftWidth = Convert.toPx(this.resolvedBorderLeftWidth)
 		this.wrapper.borderRightWidth = Convert.toPx(this.resolvedBorderRightWidth)
 		this.wrapper.borderBottomWidth = Convert.toPx(this.resolvedBorderBottomWidth)
-		this.wrapper.borderTopLeftRadius = Convert.toPx(this.borderTopLeftRadius.number)
-		this.wrapper.borderTopRightRadius = Convert.toPx(this.borderTopRightRadius.number)
-		this.wrapper.borderBottomLeftRadius = Convert.toPx(this.borderBottomLeftRadius.number)
-		this.wrapper.borderBottomRightRadius = Convert.toPx(this.borderBottomRightRadius.number)
+		this.wrapper.cornerTopLeftRadius = Convert.toPx(this.cornerTopLeftRadius.number)
+		this.wrapper.cornerTopRightRadius = Convert.toPx(this.cornerTopRightRadius.number)
+		this.wrapper.cornerBottomLeftRadius = Convert.toPx(this.cornerBottomLeftRadius.number)
+		this.wrapper.cornerBottomRightRadius = Convert.toPx(this.cornerBottomRightRadius.number)
 	}
 
 	/**
@@ -1734,7 +1734,7 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	 */
 	open val border by lazy {
 
-		JavaScriptProperty("0 #000") { value ->
+		JavaScriptProperty("0 #000", parse = true) { value ->
 
 			val composite = value.composite
 			if (composite == null) {
@@ -1768,7 +1768,7 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	 */
 	open val borderTop by lazy {
 
-		JavaScriptProperty("0 #000") { value ->
+		JavaScriptProperty("0 #000", parse = true) { value ->
 
 			val composite = value.composite
 			if (composite == null) {
@@ -1792,7 +1792,7 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	 */
 	open val borderLeft by lazy {
 
-		JavaScriptProperty("0 #000") { value ->
+		JavaScriptProperty("0 #000", parse = true) { value ->
 
 			val composite = value.composite
 			if (composite == null) {
@@ -1816,7 +1816,7 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	 */
 	open val borderRight by lazy {
 
-		JavaScriptProperty("0 #000") { value ->
+		JavaScriptProperty("0 #000", parse = true) { value ->
 
 			val composite = value.composite
 			if (composite == null) {
@@ -1840,7 +1840,7 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	 */
 	open val borderBottom by lazy {
 
-		JavaScriptProperty("0 #000") { value ->
+		JavaScriptProperty("0 #000", parse = true) { value ->
 
 			val composite = value.composite
 			if (composite == null) {
@@ -2062,58 +2062,58 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	}
 
 	/**
-	 * @property borderRadius
+	 * @property cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open val borderRadius by lazy {
+	open val cornerRadius by lazy {
 		JavaScriptProperty(0.0) { value ->
-			this.borderTopLeftRadius.reset(value.number)
-			this.borderTopRightRadius.reset(value.number)
-			this.borderBottomLeftRadius.reset(value.number)
-			this.borderBottomRightRadius.reset(value.number)
+			this.cornerTopLeftRadius.reset(value.number)
+			this.cornerTopRightRadius.reset(value.number)
+			this.cornerBottomLeftRadius.reset(value.number)
+			this.cornerBottomRightRadius.reset(value.number)
 		}
 	}
 
 	/**
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open val borderTopLeftRadius by lazy {
+	open val cornerTopLeftRadius by lazy {
 		JavaScriptProperty(0.0) {
 			this.invalidateBorder()
 		}
 	}
 
 	/**
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open val borderTopRightRadius by lazy {
+	open val cornerTopRightRadius by lazy {
 		JavaScriptProperty(0.0) {
 			this.invalidateBorder()
 		}
 	}
 
 	/**
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open val borderBottomLeftRadius by lazy {
+	open val cornerBottomLeftRadius by lazy {
 		JavaScriptProperty(0.0) {
 			this.invalidateBorder()
 		}
 	}
 
 	/**
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
-	open val borderBottomRightRadius by lazy {
+	open val cornerBottomRightRadius by lazy {
 		JavaScriptProperty(0.0) {
 			this.invalidateBorder()
 		}
@@ -4103,118 +4103,118 @@ open class JavaScriptView(context: JavaScriptContext) : JavaScriptClass(context)
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderRadius
+	 * @method jsGet_cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsGet_borderRadius(callback: JavaScriptGetterCallback) {
+	open fun jsGet_cornerRadius(callback: JavaScriptGetterCallback) {
 
 		val value = this.context.createEmptyObject()
-		value.property("topLeft", this.borderTopLeftRadius)
-		value.property("topRight", this.borderTopRightRadius)
-		value.property("bottomLeft", this.borderBottomLeftRadius)
-		value.property("bottomRight", this.borderBottomRightRadius)
+		value.property("topLeft", this.cornerTopLeftRadius)
+		value.property("topRight", this.cornerTopRightRadius)
+		value.property("bottomLeft", this.cornerBottomLeftRadius)
+		value.property("bottomRight", this.cornerBottomRightRadius)
 
 		callback.returns(value)
 	}
 
 	/**
-	 * @method jsSet_borderRadius
+	 * @method jsSet_cornerRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsSet_borderRadius(callback: JavaScriptSetterCallback) {
-		this.borderRadius.reset(callback.value, lock = this)
+	open fun jsSet_cornerRadius(callback: JavaScriptSetterCallback) {
+		this.cornerRadius.reset(callback.value, lock = this)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderTopLeftRadius
+	 * @method jsGet_cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsGet_borderTopLeftRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(this.borderTopLeftRadius)
+	open fun jsGet_cornerTopLeftRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(this.cornerTopLeftRadius)
 	}
 
 	/**
-	 * @method jsSet_borderTopLeftRadius
+	 * @method jsSet_cornerTopLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsSet_borderTopLeftRadius(callback: JavaScriptSetterCallback) {
-		this.borderTopLeftRadius.reset(callback.value, lock = this)
-	}
-
-	//--------------------------------------------------------------------------
-
-	/**
-	 * @method jsGet_borderTopRightRadius
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	@Suppress("unused")
-	open fun jsGet_borderTopRightRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(this.borderTopRightRadius)
-	}
-
-	/**
-	 * @method jsSet_borderTopRightRadius
-	 * @since 0.1.0
-	 * @hidden
-	 */
-	@Suppress("unused")
-	open fun jsSet_borderTopRightRadius(callback: JavaScriptSetterCallback) {
-		this.borderTopRightRadius.reset(callback.value, lock = this)
+	open fun jsSet_cornerTopLeftRadius(callback: JavaScriptSetterCallback) {
+		this.cornerTopLeftRadius.reset(callback.value, lock = this)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderBottomLeftRadius
+	 * @method jsGet_cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsGet_borderBottomLeftRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(this.borderBottomLeftRadius)
+	open fun jsGet_cornerTopRightRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(this.cornerTopRightRadius)
 	}
 
 	/**
-	 * @method jsSet_borderBottomLeftRadius
+	 * @method jsSet_cornerTopRightRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsSet_borderBottomLeftRadius(callback: JavaScriptSetterCallback) {
-		this.borderBottomLeftRadius.reset(callback.value, lock = this)
+	open fun jsSet_cornerTopRightRadius(callback: JavaScriptSetterCallback) {
+		this.cornerTopRightRadius.reset(callback.value, lock = this)
 	}
 
 	//--------------------------------------------------------------------------
 
 	/**
-	 * @method jsGet_borderBottomRightRadius
+	 * @method jsGet_cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsGet_borderBottomRightRadius(callback: JavaScriptGetterCallback) {
-		callback.returns(this.borderBottomRightRadius)
+	open fun jsGet_cornerBottomLeftRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(this.cornerBottomLeftRadius)
 	}
 
 	/**
-	 * @method jsSet_borderBottomRightRadius
+	 * @method jsSet_cornerBottomLeftRadius
 	 * @since 0.1.0
 	 * @hidden
 	 */
 	@Suppress("unused")
-	open fun jsSet_borderBottomRightRadius(callback: JavaScriptSetterCallback) {
-		this.borderBottomRightRadius.reset(callback.value, lock = this)
+	open fun jsSet_cornerBottomLeftRadius(callback: JavaScriptSetterCallback) {
+		this.cornerBottomLeftRadius.reset(callback.value, lock = this)
+	}
+
+	//--------------------------------------------------------------------------
+
+	/**
+	 * @method jsGet_cornerBottomRightRadius
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	@Suppress("unused")
+	open fun jsGet_cornerBottomRightRadius(callback: JavaScriptGetterCallback) {
+		callback.returns(this.cornerBottomRightRadius)
+	}
+
+	/**
+	 * @method jsSet_cornerBottomRightRadius
+	 * @since 0.1.0
+	 * @hidden
+	 */
+	@Suppress("unused")
+	open fun jsSet_cornerBottomRightRadius(callback: JavaScriptSetterCallback) {
+		this.cornerBottomRightRadius.reset(callback.value, lock = this)
 	}
 
 	//--------------------------------------------------------------------------

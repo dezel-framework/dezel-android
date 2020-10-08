@@ -92,73 +92,73 @@ open class BorderDrawable : Drawable() {
 
 	/**
 	 * The top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopLeftRadius: Float by Delegates.OnSet(0f) {
+	public var cornerTopLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopRightRadius: Float by Delegates.OnSet(0f) {
+	public var cornerTopRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomLeftRadius: Float by Delegates.OnSet(0f) {
+	public var cornerBottomLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomRightRadius: Float by Delegates.OnSet(0f) {
+	public var cornerBottomRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The top left border inner radius.
-	 * @property borderTopLeftInnerRadius
+	 * @property cornerTopLeftInnerRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopLeftInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
+	public var cornerTopLeftInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The top right border inner radius.
-	 * @property borderTopRightInnerRadius
+	 * @property cornerTopRightInnerRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopRightInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
+	public var cornerTopRightInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom left border inner radius.
-	 * @property borderBottomLeftInnerRadius
+	 * @property cornerBottomLeftInnerRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomLeftInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
+	public var cornerBottomLeftInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom right border radius.
-	 * @property borderBottomRightInnerRadius
+	 * @property cornerBottomRightInnerRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomRightInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
+	public var cornerBottomRightInnerRadius: PointF by Delegates.OnSet(PointF(0f, 0f)) {
 		this.invalidateCache()
 	}
 
@@ -380,15 +380,15 @@ open class BorderDrawable : Drawable() {
 			return
 		}
 
-		val outerRadiusTL = this.borderTopLeftRadius
-		val outerRadiusTR = this.borderTopRightRadius
-		val outerRadiusBL = this.borderBottomLeftRadius
-		val outerRadiusBR = this.borderBottomRightRadius
+		val outerRadiusTL = this.cornerTopLeftRadius
+		val outerRadiusTR = this.cornerTopRightRadius
+		val outerRadiusBL = this.cornerBottomLeftRadius
+		val outerRadiusBR = this.cornerBottomRightRadius
 
-		val innerRadiusTL = this.borderTopLeftInnerRadius
-		val innerRadiusTR = this.borderTopRightInnerRadius
-		val innerRadiusBL = this.borderBottomLeftInnerRadius
-		val innerRadiusBR = this.borderBottomRightInnerRadius
+		val innerRadiusTL = this.cornerTopLeftInnerRadius
+		val innerRadiusTR = this.cornerTopRightInnerRadius
+		val innerRadiusBL = this.cornerBottomLeftInnerRadius
+		val innerRadiusBR = this.cornerBottomRightInnerRadius
 
 		val cacheW = (borderWidthL + borderWidthR + Math.max(Math.max(innerRadiusTL.x, innerRadiusBL.x), Math.max(innerRadiusTR.x, innerRadiusBR.x)) * 2 + 3f)
 		val cacheH = (borderWidthT + borderWidthB + Math.max(Math.max(innerRadiusTL.y, innerRadiusBL.y), Math.max(innerRadiusTR.y, innerRadiusBR.y)) * 2 + 3f)

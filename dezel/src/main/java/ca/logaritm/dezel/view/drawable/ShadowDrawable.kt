@@ -51,37 +51,37 @@ open class ShadowDrawable : Drawable() {
 
 	/**
 	 * The top left border radius.
-	 * @property borderTopLeftRadius
+	 * @property cornerTopLeftRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopLeftRadius: Float by Delegates.OnSet(0f) {
+	public var cornerTopLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The top right border radius.
-	 * @property borderTopRightRadius
+	 * @property cornerTopRightRadius
 	 * @since 0.1.0
 	 */
-	public var borderTopRightRadius: Float by Delegates.OnSet(0f) {
+	public var cornerTopRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom left border radius.
-	 * @property borderBottomLeftRadius
+	 * @property cornerBottomLeftRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomLeftRadius: Float by Delegates.OnSet(0f) {
+	public var cornerBottomLeftRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
 	/**
 	 * The bottom right border radius.
-	 * @property borderBottomRightRadius
+	 * @property cornerBottomRightRadius
 	 * @since 0.1.0
 	 */
-	public var borderBottomRightRadius: Float by Delegates.OnSet(0f) {
+	public var cornerBottomRightRadius: Float by Delegates.OnSet(0f) {
 		this.invalidateCache()
 	}
 
@@ -230,15 +230,15 @@ open class ShadowDrawable : Drawable() {
 			 * will be nine-scaled
 			 */
 
-			val borderRadiusTL = this.borderTopLeftRadius
-			val borderRadiusTR = this.borderTopRightRadius
-			val borderRadiusBL = this.borderBottomLeftRadius
-			val borderRadiusBR = this.borderBottomRightRadius
+			val cornerRadiusTL = this.cornerTopLeftRadius
+			val cornerRadiusTR = this.cornerTopRightRadius
+			val cornerRadiusBL = this.cornerBottomLeftRadius
+			val cornerRadiusBR = this.cornerBottomRightRadius
 
 			val inner = Math.max(
 				Math.max(
-					Math.max(borderRadiusTL, borderRadiusTR),
-					Math.max(borderRadiusBR, borderRadiusBL)
+					Math.max(cornerRadiusTL, cornerRadiusTR),
+					Math.max(cornerRadiusBR, cornerRadiusBL)
 				),
 				shadowBlur
 			)
@@ -278,10 +278,10 @@ open class ShadowDrawable : Drawable() {
 			path.addOuterRoundedRect(
 				shapeW,
 				shapeH,
-				borderRadiusTL,
-				borderRadiusTR,
-				borderRadiusBL,
-				borderRadiusBR
+				cornerRadiusTL,
+				cornerRadiusTR,
+				cornerRadiusBL,
+				cornerRadiusBR
 			)
 
 			shadowCacheCanvas.drawPath(path, this.shadowPaint)

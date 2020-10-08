@@ -8,6 +8,95 @@ import ca.logaritm.dezel.view.display.value.ValueList
 import ca.logaritm.dezel.view.display.value.VariableValue
 
 /**
+ * @method JavaScriptProperty.initialize
+ * @since 0.1.0
+ * @hidden
+ */
+fun JavaScriptProperty.initialize(values: ValueList) {
+
+	val count = values.count
+	if (count == 1) {
+
+		val value = values.get(0)
+		if (value == null) {
+			return
+		}
+
+		when (value.type) {
+
+			kValueTypeNull -> {
+				this.resetInitialValue(JavaScriptProperty.Null)
+				this.resetCurrentValue(JavaScriptProperty.Null)
+			}
+
+			kValueTypeString -> {
+				val initial = value.string
+				this.resetInitialValue(JavaScriptPropertyStringValue(initial))
+				this.resetCurrentValue(JavaScriptPropertyStringValue(initial))
+			}
+
+			kValueTypeNumber -> {
+				val initial = value.number
+				this.resetInitialValue(JavaScriptPropertyNumberValue(initial))
+				this.resetCurrentValue(JavaScriptPropertyNumberValue(initial))
+			}
+
+			kValueTypeBoolean -> {
+				val initial = value.boolean
+				this.resetInitialValue(JavaScriptPropertyBooleanValue(initial))
+				this.resetCurrentValue(JavaScriptPropertyBooleanValue(initial))
+			}
+
+			kValueTypeVariable -> {
+				this.resetInitialValue(this.createVariable(VariableValue(value.handle)))
+				this.resetCurrentValue(this.createVariable(VariableValue(value.handle)))
+			}
+
+			kValueTypeFunction -> {
+				this.resetInitialValue(this.createFunction(FunctionValue(value.handle)))
+				this.resetCurrentValue(this.createFunction(FunctionValue(value.handle)))
+			}
+				 
+			else -> {}
+		}
+
+	} else {
+
+		/*
+         * The parser returned multiple values. In this case we create a
+         * composite value and reset the property with it.
+         */
+
+		val components = mutableListOf<JavaScriptPropertyValue>()
+
+		for (i in 0 until count) {
+
+			val value = values.get(i)
+			if (value == null) {
+				continue
+			}
+
+			when (value.type) {
+
+				kValueTypeNull     -> components.add(JavaScriptProperty.Null)
+				kValueTypeString   -> components.add(this.createString(value))
+				kValueTypeNumber   -> components.add(this.createNumber(value))
+				kValueTypeBoolean  -> components.add(this.createBoolean(value))
+				kValueTypeVariable -> components.add(this.createVariable(VariableValue(value.handle)))
+				kValueTypeFunction -> components.add(this.createFunction(FunctionValue(value.handle)))
+
+				else -> {
+
+				}
+			}
+		}
+
+		this.resetInitialValue(JavaScriptPropertyCompositeValue(components))
+		this.resetCurrentValue(JavaScriptPropertyCompositeValue(components))
+	}
+}
+
+/**
  * @method JavaScriptProperty.reset
  * @since 0.1.0
  * @hidden
@@ -70,7 +159,7 @@ fun JavaScriptProperty.reset(values: ValueList, lock: Any? = null) {
 		 * composite value and reset the property with it.
 		 */
 
-		var components = mutableListOf<JavaScriptPropertyValue>()
+		val components = mutableListOf<JavaScriptPropertyValue>()
 
 		for (i in 0 until count) {
 

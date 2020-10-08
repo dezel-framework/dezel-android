@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dezel/dezel.iml" filepath="$PROJECT_DIR$/dezel/dezel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dezel-android.iml" filepath="$PROJECT_DIR$/dezel-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dezel/dezel.iml" filepath="$PROJECT_DIR$/dezel/dezel.iml" group="dezel-android/dezel" />
+      <module fileurl="file://$PROJECT_DIR$/dezel-android.iml" filepath="$PROJECT_DIR$/dezel-android.iml" group="dezel-android" />
     </modules>
   </component>
 </project>
