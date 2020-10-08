@@ -116,7 +116,7 @@ open class JavaScriptContext {
 	 */
 	init {
 
-		this.handle = JavaScriptContextExternal.create(BuildConfig.APPLICATION_ID)
+		this.handle = JavaScriptContextExternal.create(BuildConfig.LIBRARY_PACKAGE_NAME)
 
 		this.global = JavaScriptValue.create(this, JavaScriptContextExternal.getGlobalObject(this.handle))
 		this.global.defineProperty("global", value = this.global, getter = null, setter = null, writable = false, enumerable = false, configurable = false)

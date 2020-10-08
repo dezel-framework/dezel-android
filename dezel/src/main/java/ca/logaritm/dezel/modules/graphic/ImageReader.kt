@@ -22,7 +22,7 @@ public object ImageReader {
      * @since 0.1.0
      * @hidden
      */
-    private var assets: MutableMap<String, Array<String>> = mutableMapOf()
+    private var assets: MutableMap<String, Array<String>?> = mutableMapOf()
 
     /**
      * @method read
@@ -90,11 +90,11 @@ public object ImageReader {
 
         val dir = file.baseName
 
-        var files = assets[dir]
-        if (files == null) {
-            files = context.assets.list(dir)
-            assets[dir] = files
+        if (this.assets[dir] == null) {
+            this.assets[dir] = context.assets.list(dir)
         }
+
+        val files = this.assets[dir]
 
         if (files == null) {
             return null

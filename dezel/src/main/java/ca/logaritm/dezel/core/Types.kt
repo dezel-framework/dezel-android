@@ -125,5 +125,5 @@ internal fun toArgc(values: JavaScriptArguments?) : Int {
  * @hidden
  */
 public fun <T:Any> KClass<T>.getResource(path:String) : InputStream {
-    return this.java.classLoader.getResourceAsStream(path)
+    return this.java.classLoader!!.getResourceAsStream(path)
 }
